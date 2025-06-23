@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Results - SDG #8</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card { border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .prediction-card { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); }
+        .rec-card { border-left: 4px solid #0d47a1; }
+        .impact-badge { font-size: 1rem; padding: 0.5rem 1rem; }
+        .explanation-img { max-width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <div class="bg-primary text-white py-4">
+        <div class="container">
+            <h1 class="text-center">Youth Unemployment Prediction Results</h1>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card prediction-card p-4 mb-4 text-center">
+                    <h2 class="mb-3">Predicted Youth Unemployment Rate</h2>
+                    <div class="display-2 fw-bold text-primary mb-3">{{ prediction }}%</div>
+                    <p class="lead">Based on your economic indicators input</p>
+                </div>
+                
+                <div class="card p-4 mb-4">
+                    <h3 class="mb-4">Policy Recommendations</h3>
+                    {% for rec in recommendations %}
+                    <div class="card rec-card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <span class="badge bg-primary me-3 impact-badge">Impact: High</span>
+                                <p class="mb-0">{{ rec }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="card p-4 mb-4">
+                    <h3 class="mb-3">Your Input Summary</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr><th>GDP Growth:</th><td>{{ input_data.gdp_growth }}%</td></tr>
+                            <tr><th>FDI (% GDP):</th><td>{{ input_data.fdi }}%</td></tr>
+                            <tr><th>Inflation Rate:</th><td>{{ input_data.inflation }}%</td></tr>
+                            <tr><th>Education Spending:</th><td>{{ input_data.education_spending }}% of GDP</td></tr>
+                            <tr><th>Ease of Business:</th><td>{{ input_data.ease_business }}/100</td></tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="card p-4">
+                    <h3 class="mb-4">Model Explanation</h3>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <h5>Feature Importance</h5>
+                            <p>Which factors most influence youth unemployment predictions:</p>
+                            <img src="data:image/png;base64,{{ feature_importance_img }}" class="explanation-img">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <h5>SHAP Value Analysis</h5>
+                            <p>How each feature impacts this specific prediction:</p>
+                            <img src="data:image/png;base64,{{ shap_summary_img }}" class="explanation-img">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <a href="/" class="btn btn-primary">Make Another Prediction</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p>UN Sustainable Development Goal #8: Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all</p>
+        </div>
+    </footer>
+</body>
+</html>

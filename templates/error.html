@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error - SDG #8 Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .error-container { margin-top: 100px; }
+    </style>
+</head>
+<body>
+    <div class="container error-container">
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h2>Application Error</h2>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title text-danger">Something went wrong</h4>
+                <div class="alert alert-danger">
+                    <strong>Error Details:</strong>
+                    <p>{{ error }}</p>
+                </div>
+                <h5>Possible Solutions:</h5>
+                <ul>
+                    <li>Check your input values are within valid ranges</li>
+                    <li>Ensure all required fields are filled</li>
+                    <li>Contact support if the problem persists</li>
+                </ul>
+                <a href="/" class="btn btn-primary mt-3">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
